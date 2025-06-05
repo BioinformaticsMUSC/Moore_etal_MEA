@@ -6,10 +6,6 @@ suppressPackageStartupMessages({
   library(scater)
   library(BiocParallel)
   library(ggpubr)
-  #library(speckle)
-  #library(magrittr)
-  #library(broom)
-  #library(muscat)
   library(Seurat)
   library(clustree)
   library(leiden)
@@ -17,27 +13,14 @@ suppressPackageStartupMessages({
   library(cowplot)
   library(scDblFinder)
   library(BiocSingular)
-  #library(scds)
 })
-
-setwd("/scratch/subramanian/Haley_MEA")
 
 load("Haley_MEA_Signac_P6/RNA_ATAC_08_Final_Labelled.RData")
 
-table(Haley_MEA_Int$Cell_Class)
-#Astro Exc_Neurons Inh_Neurons       Micro       Oligo         OPC 
-#7776       10653        4252        4949       17296        3884 
-#Vascular 
-#1257
-
-#source("/Users/SuganyaSubramanian/Utils.R")
-source("/home/subramanian/R/x86_64-pc-linux-gnu-library/4.2/Utils.R")
-
-head(Haley_MEA_Int)
+source("Utils.R")
 
 MEA_InhNeu <- subset(Haley_MEA_Int, 
                      subset = Cell_Class == "Inh_Neurons")
-table(MEA_InhNeu$Cell_Class)
 
 MEA_InhNeu <- processing_seurat_sctransform(MEA_InhNeu, 
                                             vars_to_regress = c("nUMI","pMito","pRibo",
