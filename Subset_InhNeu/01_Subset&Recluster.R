@@ -1,10 +1,3 @@
-module load r/4.2.3
-module load hdf5/1.14.3
-module load gsl/2.7.1
-module load gcc/13.2.0
-
-R
-
 suppressPackageStartupMessages({
   library(tidyverse)
   library(ggrepel)
