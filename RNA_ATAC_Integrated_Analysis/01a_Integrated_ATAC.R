@@ -73,12 +73,12 @@ for (i in 1: length(files)){
   obj_list[[i]] <- RunTFIDF(obj_list[[i]])
   obj_list[[i]] <- RunSVD(obj_list[[i]])
   obj_list[[i]]<- NucleosomeSignal(object = obj_list[[i]])
-  obj_list[[i]]<- TSSEnrichment(object = obj_list[[i]],fast=F) #Error in slot(object = object, name = layer) :
+  obj_list[[i]]<- TSSEnrichment(object = obj_list[[i]],fast=F)
   obj_list[[i]]$pct_reads_in_peaks <- obj_list[[i]]$atac_peak_region_fragments / obj_list[[i]]$atac_fragments * 100
-  #obj_list[[i]]$blacklist_ratio <- obj_list[[i]]$blacklist_region_fragments / obj_list[[i]]$peak_region_fragments
+  obj_list[[i]]$blacklist_ratio <- obj_list[[i]]$blacklist_region_fragments / obj_list[[i]]$peak_region_fragments
   obj_list[[i]]@meta.data$dataset <- files[i]
   obj_list[[i]]@meta.data$BC <- rownames(obj_list[[i]]@meta.data)
-  #obj_list[[i]] <- RenameCells(obj_list[[i]],new.names=paste(obj_list[[i]]@meta.data$dataset,obj_list[[i]]@meta.data$BC,sep="_"))
+  obj_list[[i]] <- RenameCells(obj_list[[i]],new.names=paste(obj_list[[i]]@meta.data$dataset,obj_list[[i]]@meta.data$BC,sep="_"))
 }
 
 save(obj_list,file="IntegrateATAC/Step2_Objlist.RData")
